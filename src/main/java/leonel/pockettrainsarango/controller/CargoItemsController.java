@@ -38,6 +38,6 @@ public class CargoItemsController {
         CargoItem cargoItem = new CargoItem(null, cargoItemPostDto.getDescription(),
                 cargoItemPostDto.getSlotSize(), cargoItemPostDto.getValue(), currentCity, destination);
         cargoItemsRepository.save(cargoItem);
-        return new ResponseEntity("Ok!", HttpStatus.OK);
+        return new ResponseEntity("Ok!", HttpStatus.CREATED);
     }
 }

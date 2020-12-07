@@ -36,6 +36,6 @@ public class CitiesController {
     public ResponseEntity<?> addCity(@RequestBody CityPostDto cityPostDto) {
         City city = new City(cityPostDto.getName());
         citiesRepository.save(city);
-        return new ResponseEntity("Ok!", HttpStatus.OK);
+        return new ResponseEntity("Ok!", HttpStatus.CREATED);
     }
 }

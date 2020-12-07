@@ -4,7 +4,7 @@ import com.arangodb.springframework.repository.ArangoRepository;
 import leonel.pockettrainsarango.model.City;
 
 public interface CitiesRepository extends ArangoRepository<City, String> {
-    public City findByName(String name);
+    City findByName(String name);
 
     /* @Autowired
     private ArangoDatabase arangoDatabase;

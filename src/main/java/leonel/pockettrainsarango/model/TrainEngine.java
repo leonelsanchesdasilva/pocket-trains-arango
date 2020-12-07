@@ -1,19 +1,15 @@
 package leonel.pockettrainsarango.model;
 
-import com.arangodb.springframework.annotation.Ref;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class TrainEngine {
+@EqualsAndHashCode(callSuper = false)
+public class TrainEngine extends TrainPart {
 
-    @Id
-    private String id;
-
-    @Ref
-    private TrainTechnology trainTechnology;
+    public TrainEngine(String id, TrainTechnology trainTechnology) {
+        super(id, trainTechnology);
+    }
 }

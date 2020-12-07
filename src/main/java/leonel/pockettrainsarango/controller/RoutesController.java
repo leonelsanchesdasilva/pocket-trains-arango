@@ -37,6 +37,6 @@ public class RoutesController {
         City cityTo = citiesRepository.findByName(routePostDto.getTo());
         Route route = new Route(null, cityFrom, cityTo, routePostDto.getDistance());
         routesRepository.save(route);
-        return new ResponseEntity("Ok!", HttpStatus.OK);
+        return new ResponseEntity("Ok!", HttpStatus.CREATED);
     }
 }

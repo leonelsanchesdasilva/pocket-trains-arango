@@ -7,24 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import java.util.Collection;
-
-@Document(value="trainLines")
+@Document(value="trainParts")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainLine {
+public class TrainPart {
 
     @Id
-    private String id;
-    private String name;
+    protected String id;
 
     @Ref
-    private Collection<TrainEngine> trainEngines;
-
-    @Ref
-    private Collection<TrainFuelCar> trainFuelCars;
-
-    @Ref
-    private Collection<Route> routes;
+    protected TrainTechnology trainTechnology;
 }
