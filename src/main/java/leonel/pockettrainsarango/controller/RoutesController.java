@@ -28,7 +28,7 @@ public class RoutesController {
     public ResponseEntity<?> getRoutes() {
         List<Route> routes = new ArrayList<>();
         routesRepository.findAll().forEach(routes::add);
-        return new ResponseEntity(routes, HttpStatus.OK);
+        return new ResponseEntity<>(routes, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -37,6 +37,6 @@ public class RoutesController {
         City cityTo = citiesRepository.findByName(routePostDto.getTo());
         Route route = new Route(null, cityFrom, cityTo, routePostDto.getDistance());
         routesRepository.save(route);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

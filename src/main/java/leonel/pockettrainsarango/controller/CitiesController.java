@@ -23,19 +23,19 @@ public class CitiesController {
     public ResponseEntity<?> getCities() {
         List<City> cities = new ArrayList<>();
         citiesRepository.findAll().forEach(cities::add);
-        return new ResponseEntity(cities, HttpStatus.OK);
+        return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
     public ResponseEntity<?> getOneCity(@PathVariable String name) {
         City city = citiesRepository.findByName(name);
-        return new ResponseEntity(city, HttpStatus.OK);
+        return new ResponseEntity<>(city, HttpStatus.OK);
     }
 
     @PostMapping("")
     public ResponseEntity<?> addCity(@RequestBody CityPostDto cityPostDto) {
         City city = new City(cityPostDto.getName());
         citiesRepository.save(city);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

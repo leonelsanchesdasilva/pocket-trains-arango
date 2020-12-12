@@ -28,7 +28,7 @@ public class CargoItemsController {
     public ResponseEntity<?> getCargoItems() {
         List<CargoItem> cargoItems = new ArrayList<>();
         cargoItemsRepository.findAll().forEach(cargoItems::add);
-        return new ResponseEntity(cargoItems, HttpStatus.OK);
+        return new ResponseEntity<>(cargoItems, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -38,6 +38,6 @@ public class CargoItemsController {
         CargoItem cargoItem = new CargoItem(null, cargoItemPostDto.getDescription(),
                 cargoItemPostDto.getSlotSize(), cargoItemPostDto.getValue(), currentCity, destination);
         cargoItemsRepository.save(cargoItem);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

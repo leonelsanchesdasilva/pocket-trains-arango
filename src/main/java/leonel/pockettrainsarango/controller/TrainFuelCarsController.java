@@ -4,6 +4,7 @@ import leonel.pockettrainsarango.model.TrainFuelCar;
 import leonel.pockettrainsarango.model.TrainTechnology;
 import leonel.pockettrainsarango.model.dto.TrainFuelCarPostDto;
 import leonel.pockettrainsarango.repository.TrainFuelCarsRepository;
+import leonel.pockettrainsarango.repository.TrainPartsRepository;
 import leonel.pockettrainsarango.repository.TrainTechnologiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,6 @@ public class TrainFuelCarsController {
         TrainTechnology trainTechnology = trainTechnologiesRepository.findByName(trainFuelCarPostDto.getTrainTechnology());
         TrainFuelCar trainFuelCar = new TrainFuelCar(null, trainTechnology);
         trainFuelCarsRepository.save(trainFuelCar);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

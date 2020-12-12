@@ -36,6 +36,6 @@ public class TrainEnginesController {
         TrainTechnology trainTechnology = trainTechnologiesRepository.findByName(trainEnginePostDto.getTrainTechnology());
         TrainEngine trainEngine = new TrainEngine(null, trainTechnology);
         trainEnginesRepository.save(trainEngine);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

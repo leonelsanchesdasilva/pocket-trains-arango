@@ -23,7 +23,7 @@ public class TrainTechnologiesController {
     public ResponseEntity<?> getTrainTechnologies() {
         List<TrainTechnology> trainTechnologies = new ArrayList<>();
         trainTechnologiesRepository.findAll().forEach(trainTechnologies::add);
-        return new ResponseEntity(trainTechnologies, HttpStatus.OK);
+        return new ResponseEntity<>(trainTechnologies, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -34,8 +34,9 @@ public class TrainTechnologiesController {
                 trainTechnologyPostDto.getBaseCapacity(),
                 trainTechnologyPostDto.getBaseFuel(),
                 trainTechnologyPostDto.getPeerEngines(),
-                trainTechnologyPostDto.getFuelCars());
+                trainTechnologyPostDto.getFuelCars(),
+                trainTechnologyPostDto.getRequiredParts());
         trainTechnologiesRepository.save(trainTechnology);
-        return new ResponseEntity("Ok!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }

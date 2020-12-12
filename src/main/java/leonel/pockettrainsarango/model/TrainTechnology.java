@@ -20,4 +20,5 @@ public class TrainTechnology {
     private Integer baseFuel;
     private Integer peerEngines;
     private Integer fuelCars;
+    private Integer requiredParts;
 }
