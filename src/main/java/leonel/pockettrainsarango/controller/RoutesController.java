@@ -31,6 +31,16 @@ public class RoutesController {
         return new ResponseEntity<>(routes, HttpStatus.OK);
     }
 
+    @GetMapping("/{from}/{to}")
+    public ResponseEntity<?> getShortestRoute(@PathVariable String from, @PathVariable String to) {
+        City cityFrom = citiesRepository.findByName(from);
+        City cityTo = citiesRepository.findByName(to);
+        List<Route> shortestRoute = new ArrayList<>();
+        routesRepository.findShortestRoute("cities/" + cityFrom.getId(), "cities/" + cityTo.getId())
+                .forEach(shortestRoute::add);
+        return new ResponseEntity<>(shortestRoute, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<?> addRoute(@RequestBody RoutePostDto routePostDto) {
         City cityFrom = citiesRepository.findByName(routePostDto.getFrom());
