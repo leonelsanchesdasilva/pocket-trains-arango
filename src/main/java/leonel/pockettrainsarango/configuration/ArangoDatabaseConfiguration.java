@@ -17,7 +17,7 @@ public class ArangoDatabaseConfiguration implements ArangoConfiguration {
     @Override
     public String database() {
         // Name of the database to be used
-        return "trains";
+        return "pocketTrains";
     }
 
     /* @Bean

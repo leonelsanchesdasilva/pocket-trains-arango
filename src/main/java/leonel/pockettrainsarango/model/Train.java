@@ -9,19 +9,19 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Collection;
 
-@Document(value="trainLines")
+@Document(value="trains")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainLine {
+public class Train {
 
     @Id
     private String id;
     private String name;
 
     @Ref
-    private Collection<Train> trains;
+    private Collection<TrainEngine> trainEngines;
 
     @Ref
-    private Collection<Route> routes;
+    private Collection<TrainFuelCar> trainFuelCars;
 }

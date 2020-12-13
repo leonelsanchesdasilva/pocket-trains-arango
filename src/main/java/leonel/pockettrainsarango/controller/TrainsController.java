@@ -1,13 +1,15 @@
 package leonel.pockettrainsarango.controller;
 
 import leonel.pockettrainsarango.model.Route;
+import leonel.pockettrainsarango.model.Train;
 import leonel.pockettrainsarango.model.TrainEngine;
 import leonel.pockettrainsarango.model.TrainLine;
 import leonel.pockettrainsarango.model.dto.TrainLinePostDto;
+import leonel.pockettrainsarango.model.dto.TrainPostDto;
 import leonel.pockettrainsarango.model.dto.TrainRouteDto;
 import leonel.pockettrainsarango.repository.RoutesRepository;
 import leonel.pockettrainsarango.repository.TrainEnginesRepository;
-import leonel.pockettrainsarango.repository.TrainLinesRepository;
+import leonel.pockettrainsarango.repository.TrainsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,30 +23,30 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/trainLines")
-public class TrainLinesController {
+@RequestMapping("/trains")
+public class TrainsController {
 
     @Autowired
-    private TrainLinesRepository trainLinesRepository;
+    private TrainsRepository trainsRepository;
 
     @Autowired
-    private RoutesRepository routesRepository;
+    private TrainEnginesRepository trainEnginesRepository;
 
     @GetMapping("")
-    public ResponseEntity<?> getTrainLines() {
-        List<TrainLine> routes = new ArrayList<>();
-        trainLinesRepository.findAll().forEach(routes::add);
+    public ResponseEntity<?> getTrains() {
+        List<Train> routes = new ArrayList<>();
+        trainsRepository.findAll().forEach(routes::add);
         return new ResponseEntity<>(routes, HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<?> addTrainLine(@RequestBody TrainLinePostDto trainLinePostDto) {
-        List<Route> routes = new ArrayList<>();
-        for (TrainRouteDto trainRouteDto: trainLinePostDto.getTrainRoutes()) {
-            Route route = routesRepository.findByCityFromAndCityTo(trainRouteDto.getFrom(), trainRouteDto.getTo());
-            routes.add(route);
-        }
-        // routes.stream().filter(Objects::nonNull).collect(Collectors.toList())
+    public ResponseEntity<?> addTrain(@RequestBody TrainPostDto trainPostDto) {
+        TrainEngine trainEngine = trainEnginesRepository.findByTrainTechnology(trainPostDto.getTrainTechnology());
+        Train train = new Train(null,
+                trainPostDto.getName(),
+                Collections.singletonList(trainEngine),
+                new ArrayList<>());
+        trainsRepository.save(train);
         return new ResponseEntity<>("Ok!", HttpStatus.CREATED);
     }
 }
